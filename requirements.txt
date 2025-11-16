@@ -1,0 +1,78 @@
+# API Security Framework - Dependencies
+# Core HTTP & GraphQL
+requests>=2.31.0
+urllib3>=2.0.7
+graphql-core>=3.2.3
+gql>=3.5.0
+
+# Authentication & Cryptography
+PyJWT>=2.8.0
+cryptography>=41.0.7
+python-jose>=3.3.0
+
+# Data Processing & Analysis
+pandas>=2.1.4
+numpy>=1.26.2
+pyyaml>=6.0.1
+python-dotenv>=1.0.0
+
+# Async Operations
+aiohttp>=3.9.1
+asyncio>=3.4.3
+
+# Payload & Pattern Matching
+regex>=2023.12.25
+jsonschema>=4.20.0
+
+# Reporting & Visualization
+jinja2>=3.1.2
+markdown>=3.5.1
+reportlab>=4.0.7
+matplotlib>=3.8.2
+weasyprint>=60.1
+
+# CLI & Configuration
+click>=8.1.7
+colorama>=0.4.6
+rich>=13.7.0
+tabulate>=0.9.0
+
+# Security & Vulnerability Analysis
+bandit>=1.7.5
+safety>=2.3.5
+
+# Testing
+pytest>=7.4.3
+pytest-asyncio>=0.21.1
+pytest-cov>=4.1.0
+pytest-mock>=3.12.0
+responses>=0.24.1
+
+# Code Quality
+black>=23.12.1
+flake8>=6.1.0
+mypy>=1.7.1
+pylint>=3.0.3
+
+# Database (for payload storage)
+sqlalchemy>=2.0.23
+sqlite3-python>=1.0.0
+
+# Monitoring & Logging
+loguru>=0.7.2
+sentry-sdk>=1.39.1
+
+# Docker & Containerization
+docker>=7.0.0
+
+# CI/CD Integration
+python-gitlab>=4.2.0
+PyGithub>=2.1.1
+
+# Rate Limiting & Concurrency
+ratelimit>=2.2.1
+tenacity>=8.2.3
+
+# Development
+ipython>=8.18.1
+ipdb>=0.13.13

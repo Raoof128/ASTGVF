@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # Main API Security Scanner
+  api-scanner:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: api-security-scanner
+    environment:
+      - TARGET_API_URL=${TARGET_API_URL:-https://api.example.com/graphql}
+      - AUTH_TOKEN=${AUTH_TOKEN:-}
+      - OUTPUT_FORMAT=${OUTPUT_FORMAT:-html}
+      - VERIFY_SSL=${VERIFY_SSL:-true}
+    volumes:
+      - ./reports:/app/reports
+      - ./datasets:/app/datasets:ro
+    command: >
+      scan
+      --url ${TARGET_API_URL:-https://api.example.com/graphql}
+      --auth-token "${AUTH_TOKEN:-}"
+      --output-file /app/reports/security_report.html
+      --output-format ${OUTPUT_FORMAT:-html}
+      --vulnerabilities all
+    networks:
+      - security-net
+    restart: "no"
+
+  # Report Viewer (Nginx)
+  report-viewer:
+    image: nginx:alpine
+    container_name: security-report-viewer
+    ports:
+      - "${REPORT_PORT:-8080}:80"
+    volumes:
+      - ./reports:/usr/share/nginx/html:ro
+    networks:
+      - security-net
+    depends_on:
+      - api-scanner
+
+  # Continuous Monitoring (Optional)
+  continuous-monitor:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: api-security-monitor
+    environment:
+      - TARGET_API_URL=${TARGET_API_URL}
+      - AUTH_TOKEN=${AUTH_TOKEN}
+      - SCAN_INTERVAL=${SCAN_INTERVAL:-3600}  # Default: 1 hour
+    volumes:
+      - ./reports:/app/reports
+    command: >
+      sh -c "while true; do
+        python -m orchestration.cli scan
+          --url $TARGET_API_URL
+          --auth-token '$AUTH_TOKEN'
+          --output-file /app/reports/scan_$$(date +%Y%m%d_%H%M%S).html
+          --output-format html;
+        echo 'Scan complete. Sleeping for $SCAN_INTERVAL seconds...';
+        sleep $SCAN_INTERVAL;
+      done"
+    networks:
+      - security-net
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+networks:
+  security-net:
+    driver: bridge
+
+volumes:
+  reports:
