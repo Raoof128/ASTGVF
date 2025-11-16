@@ -18,7 +18,6 @@ python-dotenv>=1.0.0
 
 # Async Operations
 aiohttp>=3.9.1
-asyncio>=3.4.3
 
 # Payload & Pattern Matching
 regex>=2023.12.25
@@ -56,7 +55,6 @@ pylint>=3.0.3
 
 # Database (for payload storage)
 sqlalchemy>=2.0.23
-sqlite3-python>=1.0.0
 
 # Monitoring & Logging
 loguru>=0.7.2
