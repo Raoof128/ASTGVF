@@ -1,0 +1,75 @@
+# API Security Framework - Configuration Example
+# Copy this file to config.yaml and customize for your environment
+
+# Target API Configuration
+endpoint: https://api.example.com/graphql
+auth_token: Bearer YOUR_JWT_TOKEN_HERE
+
+# Alternative: Use environment variable
+# auth_token: ${API_TOKEN}
+
+# Custom authentication headers (optional)
+auth_headers:
+  # X-API-Key: your-api-key
+  # X-Custom-Header: value
+
+# Scan Configuration
+output_file: security_report.html
+output_format: html  # Options: html, json, markdown, pdf
+
+# Vulnerability Types to Test
+# Options: introspection, injection, authorization, authentication, all
+vulnerabilities:
+  - introspection
+  - injection
+  - authorization
+  - authentication
+
+# Performance Tuning
+confidence_threshold: 0.85  # 0.0-1.0 (higher = fewer false positives)
+max_concurrent: 5           # Maximum concurrent HTTP requests
+timeout: 30                 # Request timeout in seconds
+verify_ssl: true            # Verify SSL certificates
+
+# Rate Limiting
+rate_limit_delay: 0.1       # Delay between requests (seconds)
+max_retries: 3              # Maximum retry attempts
+
+# Advanced Options
+verbose: false              # Enable verbose output
+
+# Specific Detector Configuration
+injection:
+  types:
+    - sql
+    - nosql
+    - command
+  custom_payloads: ./datasets/payloads/custom.txt
+
+authorization:
+  test_user_ids:
+    - "1"
+    - "2"
+    - "3"
+    - "admin"
+    - "test"
+
+authentication:
+  test_jwt_secrets:
+    - secret
+    - password
+    - admin
+
+# Reporting Options
+reporting:
+  include_executive_summary: true
+  include_remediation: true
+  include_code_examples: true
+  export_metrics: true
+
+# Notification (optional)
+notifications:
+  webhook_url: https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+  on_critical: true
+  on_high: true
+  on_completion: false
